@@ -165,7 +165,7 @@
             <footer class="footer">
                 <div class="container">
                     <p>
-                        <a href="/api/friends">API Friends List"></a>|
+                        <a href="/api/friends">API Friends List</a> |
                         <a href="https://github.com/lewisjake/friendFinder.git">Github Repo</a>
                     </p>
                 </div>
@@ -220,8 +220,17 @@
 					$('#Q9').val().trim(),
 					$('#Q10').val().trim()
               ]  
-            }
-        }
+            };
+
+            // add user input to friends
+            $.post('api/friends', userInput)
+            .done(function(data) {
+                $('#userMatch').html(data.matchName);
+                $("#userMatchImage").attr("src", data.matchImage);
+                // open modal
+                $('#modal1').modal('open');
+            });
+        });
         </script>
 
         
