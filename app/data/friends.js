@@ -159,5 +159,6 @@ var friendsArray = [
             '1',
             '1',
         ]
-    },
-]
+    }
+];
+module.exports = friendsArray;

@@ -159,7 +159,70 @@
             <button type="submit" class="btn btn-primary btn lg btn-block" id="submit">
                 <i class="fa fa-check-circle">Submit</i>
             </button>
+
+            <hr>
+
+            <footer class="footer">
+                <div class="container">
+                    <p>
+                        <a href="/api/friends">API Friends List"></a>|
+                        <a href="https://github.com/lewisjake/friendFinder.git">Github Repo</a>
+                    </p>
+                </div>
+            </footer>
+
+            <!--Modal-->
+            <div id="modal-1" class="modal">
+                <div class="modal-content">
+                    <h4>Closest Friend</h4>
+                    <div class="divider"></div>
+                    <h5 id="userMatch"></h5>
+                    <img id="userMatchImage" class="materialboxed" width="650" src="">
+                </div>
+                <div class="modal-footer">
+                    <a href="/survey" class="modal-action">Fill Out Again?</a>
+                </div>
+            </div>
+
         </div>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('select').material_select();
+
+                $('.modal').modal({
+				dismissible: false, // Modal can be dismissed by clicking outside of the modal
+				opacity: .5, // Opacity of modal background
+				inDuration: 400, // Transition in duration
+				outDuration: 200, // Transition out duration
+				startingTop: '4%', // Starting top style attribute
+				endingTop: '10%' // Ending top style attribute
+            });
+        });
+
+        // activate submit button
+        $('#submit').on('click', function(event) {
+            event.preventDefault();
+
+            // inputs
+            var userInput = {
+              name: $('#userName').val().trim(),
+              photo: $('userPhoto').val().trim(),
+              scores: [
+                    $('#Q1').val().trim(),
+					$('#Q2').val().trim(),
+					$('#Q3').val().trim(),
+					$('#Q4').val().trim(),
+					$('#Q5').val().trim(),
+					$('#Q6').val().trim(),
+					$('#Q7').val().trim(),
+					$('#Q8').val().trim(),
+					$('#Q9').val().trim(),
+					$('#Q10').val().trim()
+              ]  
+            }
+        }
+        </script>
 
         
 
