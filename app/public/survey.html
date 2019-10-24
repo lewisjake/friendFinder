@@ -6,6 +6,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
     </head>
 
     <body>
@@ -17,9 +19,9 @@
             <h3>About You</h3>
             
             <h4>Name</h4>
-            <input type="text" id="name" class="form-control" required>
+            <input type="text" id="userName" class="form-control" required>
             <h4>Link to a Photo of Yourself</h4>
-            <input type="text" id="photo" class="form-control">
+            <input type="text" id="userPhoto" class="form-control">
             
             <hr>
 
@@ -189,7 +191,6 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 $('select').material_select();
-
                 $('.modal').modal({
 				dismissible: false, // Modal can be dismissed by clicking outside of the modal
 				opacity: .5, // Opacity of modal background
@@ -199,15 +200,13 @@
 				endingTop: '10%' // Ending top style attribute
             });
         });
-
         // activate submit button
         $('#submit').on('click', function(event) {
             event.preventDefault();
-
             // inputs
             var userInput = {
-              name: $('#userName').val().trim(),
-              photo: $('userPhoto').val().trim(),
+              name: $('#userMatch').val().trim(),
+              photo: $('#userMatchImage').val().trim(),
               scores: [
                     $('#Q1').val().trim(),
 					$('#Q2').val().trim(),
@@ -221,12 +220,11 @@
 					$('#Q10').val().trim()
               ]  
             };
-
             // add user input to friends
-            $.post('api/friends', userInput)
-            .done(function(data) {
-                $('#userMatch').html(data.matchName);
-                $("#userMatchImage").attr("src", data.matchImage);
+            $.post('/api/friends', userInput, function (data)
+             {
+                $('#userMatch').html(data.name);
+                $("#userMatchImage").attr("src", data.photo);
                 // open modal
                 $('#modal1').modal('open');
             });

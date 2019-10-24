@@ -6,7 +6,7 @@ module.exports = function(app) {
 
     // home page
     app.get('/', function(req, res) {
-        res.sendFile(path.join(__dirname, '../public/home.hhtml'));
+        res.sendFile(path.join(__dirname, '../public/home.html'));
     });
 
     // survey page

@@ -6,24 +6,24 @@ var friends = require('../data/friends.js');
 
 // export API
 module.exports = function(app) {
-    console.log('___ENTER apiRoutes.js');
+    // console.log('___ENTER apiRoutes.js');
     app.get('/api/friends', function(req, res) {
         res.json(friends);
     });
 
     // add new friends
-    app.post('api/friends', function(req, res) {
+    app.post('/api/friends', function(req, res) {
         // get user input
         var userInput = req.body;
-        console.log('userInput = ' + JSON.stringify(userInput));
+         console.log('userInput = ' + JSON.stringify(userInput));
 
         var userResponses = userInput.scores;
-        console.log('userResponses = ' + userResponses);
+         console.log('userResponses = ' + userResponses);
 
         // compute who the best match is
         var matchName = '';
         var matchImage = '';
-        var totalDifference = 1000 // make this high for a better comparison
+        var totalDifference = 1000; // make this high for a better comparison
 
         // loop through all possible friends
         for (var i = 0; i < friends.length; i++) {
@@ -39,7 +39,7 @@ module.exports = function(app) {
             // whichever friend has the lowest difference record that friend
             if (diff < totalDifference) {
                  console.log('Closest match found = ' + diff);
-				 console.log('Friend name = ' + friends[i].name);
+                 console.log('Friend name = ' + friends[i].name);
                  console.log('Friend image = ' + friends[i].photo);
                 
                 totalDifference = diff;

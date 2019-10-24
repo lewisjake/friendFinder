@@ -13,10 +13,11 @@ var PORT = process.env.PORT || 3030;
 app.use(bodyPaser.urlencoded({ extended: true}));
 app.use(bodyPaser.json());
 app.use(bodyPaser.text());
+app.use(express.static(path.join(__dirname, './app/public')));
 
 // add routes
-//require(path.join(__dirname, './app/routing/apiRoutes'))(app);
-//require(path.join(__dirname, './app/routing/htmlRoutes'))(app);
+require(path.join(__dirname, './app/routing/apiRoutes'))(app);
+require(path.join(__dirname, './app/routing/htmlRoutes'))(app);
 
 // start listening on PORT
 app.listen(PORT, function() {
